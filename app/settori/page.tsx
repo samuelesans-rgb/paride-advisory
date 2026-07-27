@@ -1,0 +1,6 @@
+import { CtaBanner } from "@/components/cta-banner";
+import { PageHero } from "@/components/page-hero";
+import { sectors } from "@/lib/site-data";
+import { createMetadata } from "@/lib/seo";
+export const metadata = createMetadata({ title: "Settori", description: "Consulenza adattata alle esigenze di PMI, hospitality, commercio, professionisti e privati.", path: "/settori" });
+export default function SectorsPage() { return <><PageHero eyebrow="Settori" title="Soluzioni che parlano il linguaggio della tua realtà." description="Ogni settore ha tempi, dinamiche e priorità differenti. Il nostro approccio parte sempre dal contesto in cui operi." /><section className="container py-20 sm:py-28"><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{sectors.map(({ title, icon: Icon }) => <article className="border border-slate-200 p-7 transition hover:border-gold hover:shadow-lg" key={title}><Icon className="size-8 text-gold" strokeWidth={1.4} /><h2 className="mt-12 text-xl font-semibold tracking-[-0.03em] text-navy">{title}</h2><p className="mt-3 text-sm leading-6 text-slate-600">Supporto coordinato per gestire priorità, processi e progetti con maggiore continuità.</p></article>)}</div></section><CtaBanner /></>; }

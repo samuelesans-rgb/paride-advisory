@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Check } from "lucide-react";
+import { CtaBanner } from "@/components/cta-banner";
+import { PageHero } from "@/components/page-hero";
+import { services, siteConfig } from "@/lib/site-data";
+import { createMetadata } from "@/lib/seo";
+export function generateStaticParams() { return services.map(({ slug }) => ({ slug })); }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const service = services.find((item) => item.slug === slug); return service ? createMetadata({ title: service.title, description: service.summary, path: `/servizi/${service.slug}` }) : {}; }
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; const service = services.find((item) => item.slug === slug); if (!service) notFound(); const Icon = service.icon; const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url }, { "@type": "ListItem", position: 2, name: "Servizi", item: `${siteConfig.url}/servizi` }, { "@type": "ListItem", position: 3, name: service.title }] }; return <><PageHero eyebrow={service.eyebrow} title={service.title} description={service.description} /><section className="container grid gap-12 py-20 sm:py-28 lg:grid-cols-[.8fr_1.2fr]"><div><Icon className="size-12 text-gold" strokeWidth={1.25} /><h2 className="mt-6 text-3xl font-semibold tracking-[-0.04em] text-navy">Un supporto costruito sulle tue priorità.</h2>{service.note && <p className="mt-6 border-l-2 border-gold bg-slate-50 p-5 text-sm leading-6 text-slate-700">{service.note}</p>}</div><div><p className="eyebrow">Ambiti di intervento</p><ul className="mt-7 grid gap-4 sm:grid-cols-2">{service.features.map((feature) => <li className="flex gap-3 border-t border-slate-200 py-4 text-sm text-navy" key={feature}><Check className="size-5 shrink-0 text-gold" />{feature}</li>)}</ul><Link className="button-primary mt-8" href="/contatti">Parla con noi</Link></div></section><CtaBanner /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} /></>; }
