@@ -25,6 +25,7 @@ export const siteConfig = {
   phoneHref: "tel:+393289314424",
   whatsapp:
     "https://wa.me/393289314424?text=Buongiorno,%20vorrei%20richiedere%20una%20consulenza.",
+  linkedin: "https://www.linkedin.com/company/paride-sanso-advisory/",
 } as const;
 
 export type Service = {
@@ -93,14 +94,14 @@ export const services: Service[] = [
 ];
 
 export const sectors = [
-  { title: "PMI", icon: Factory },
-  { title: "Ristorazione", icon: Building2 },
-  { title: "Bar", icon: BriefcaseBusiness },
-  { title: "Hotel & Hospitality", icon: Handshake },
-  { title: "Attività commerciali", icon: Settings2 },
-  { title: "Studi professionali", icon: BarChart3 },
-  { title: "Condomini", icon: Building2 },
-  { title: "Privati", icon: LineChart },
+  { title: "PMI", slug: "pmi", icon: Factory },
+  { title: "Ristorazione", slug: "ristorazione-hospitality", icon: Building2 },
+  { title: "Bar", slug: "ristorazione-hospitality", icon: BriefcaseBusiness },
+  { title: "Hotel & Hospitality", slug: "ristorazione-hospitality", icon: Handshake },
+  { title: "Attività commerciali", slug: "attivita-commerciali", icon: Settings2 },
+  { title: "Studi professionali", slug: "studi-professionali", icon: BarChart3 },
+  { title: "Condomini", slug: "condomini", icon: Building2 },
+  { title: "Privati", slug: "privati", icon: LineChart },
 ];
 
 export const advantages = [
@@ -122,8 +123,4 @@ export const faqs = [
 
 export const networkProfessionals = ["Commercialisti", "Consulenti del lavoro", "Avvocati", "Architetti", "Ingegneri", "Geometri", "Mediatori creditizi e broker del credito", "Imprese artigiane", "Tecnici specializzati", "Esperti sicurezza"];
 
-export const articles = [
-  { slug: "pianificazione-finanziaria-pmi", category: "Finanza", title: "Pianificazione finanziaria: una guida pratica per le PMI", excerpt: "Budget, flussi di cassa e scenari: le basi per decidere con maggiore consapevolezza.", date: "12 giugno 2026", readingTime: "5 min" },
-  { slug: "controllo-gestione-crescita", category: "Gestione", title: "Il controllo di gestione come leva per la crescita", excerpt: "Dai dati alla decisione: gli indicatori che aiutano a leggere davvero l’andamento dell’impresa.", date: "28 maggio 2026", readingTime: "6 min" },
-  { slug: "project-management-riqualificazione", category: "Project management", title: "Riqualificazione immobiliare: perché il coordinamento fa la differenza", excerpt: "Tempi, costi e fornitori: come dare struttura a un progetto tecnico complesso.", date: "6 maggio 2026", readingTime: "4 min" },
-];
+export { articles } from "@/lib/articles";
