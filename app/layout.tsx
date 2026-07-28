@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+
+  verification: {
+    google: "_TVb6grE6lKoi1Y8L514T_cIcSesEPLBEX28GS9jCv8",
+  },
+
   openGraph: {
     type: "website",
     locale: "it_IT",
@@ -23,9 +28,11 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     images: [{ url: socialImage, width: 2400, height: 1800, alt: "Paride Sansò Advisory" }],
   },
-  twitter: { card: "summary_large_image", images: [socialImage] },
+  twitter: {
+    card: "summary_large_image",
+    images: [socialImage],
+  },
 };
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const organization = {
     "@context": "https://schema.org",
