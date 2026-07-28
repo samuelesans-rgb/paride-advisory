@@ -43,7 +43,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     email: siteConfig.email,
     telephone: siteConfig.phone,
     description: siteConfig.description,
-    areaServed: "IT",
+    areaServed: ["Milano", "IT"],
+    sameAs: [siteConfig.linkedin],
   };
-  return <html lang="it" className={manrope.variable}><head><ConsentDefaults /><IubendaConsentManager /></head><body><Navbar /><main>{children}</main><Footer /><WhatsAppButton /><GoogleAnalytics /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
+  return <html lang="it" className={manrope.variable}><head><ConsentDefaults /><IubendaConsentManager /></head><body><Navbar /><main id="main-content" tabIndex={-1}>{children}</main><Footer /><WhatsAppButton /><GoogleAnalytics /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
 }

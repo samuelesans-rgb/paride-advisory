@@ -1,5 +1,5 @@
 import Link from "next/link";
 import { ArrowUpRight, Clock3 } from "lucide-react";
-import type { articles } from "@/lib/site-data";
+import type { articles } from "@/lib/articles";
 
 export function BlogCard({ article }: { article: (typeof articles)[number] }) { return <article className="group flex h-full flex-col border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-xl"><p className="text-xs font-bold uppercase tracking-[0.16em] text-gold">{article.category}</p><h2 className="mt-4 text-xl font-semibold tracking-[-0.03em] text-navy">{article.title}</h2><p className="mt-3 text-sm leading-6 text-slate-600">{article.excerpt}</p><div className="mt-6 flex items-center justify-between text-xs text-slate-500"><span>{article.date}</span><span className="flex items-center gap-1"><Clock3 className="size-3" />{article.readingTime}</span></div><Link href={`/blog/${article.slug}`} className="mt-6 flex items-center gap-2 text-sm font-semibold text-navy">Leggi l’articolo <ArrowUpRight className="size-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" /></Link></article>; }
