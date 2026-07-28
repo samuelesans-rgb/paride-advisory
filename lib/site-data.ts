@@ -19,7 +19,7 @@ export const siteConfig = {
   shortName: "Sansò Advisory",
   description:
     "Consulenza amministrativa, finanziaria, strategica e tecnica per imprese e professionisti.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.sansoadvisory.it",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://sansoadvisory.it",
   email: "info@sansoadvisory.it",
   phone: "+39 328 931 4424",
   phoneHref: "tel:+393289314424",

@@ -3,17 +3,23 @@ services:
     container_name: paride-advisory
     build:
       context: .
-      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-}
+        NEXT_PUBLIC_GA_MEASUREMENT_ID: ${NEXT_PUBLIC_GA_MEASUREMENT_ID:-}
+    restart: unless-stopped
     env_file:
       - .env
     environment:
       HOSTNAME: 0.0.0.0
     ports:
       - "3000:3000"
-    restart: unless-stopped
     networks:
       - default
+      - proxy
 
 networks:
   default:
     driver: bridge
+  proxy:
+    external: true
+    name: proxy
