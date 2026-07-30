@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-data";
 
-const socialImage = { url: "/images/hero-advisory.jpg", width: 2400, height: 1800, alt: "Paride Sansò Advisory — consulenza multidisciplinare per imprese" };
+const socialImage = { url: "/images/brand/logo.png", width: 1254, height: 1254, alt: "Logo Paride Sansò Advisory" };
 
 type MetadataInput = { title: string; description: string; path?: string; type?: "website" | "article"; publishedTime?: string; modifiedTime?: string };
 export function createMetadata({ title, description, path = "", type = "website", publishedTime, modifiedTime }: MetadataInput): Metadata {

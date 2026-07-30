@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check, CircleCheckBig } from "lucide-react";
 import type { AuthorityPage } from "@/lib/authority-data";
@@ -5,14 +6,21 @@ import { services } from "@/lib/site-data";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaBanner } from "@/components/cta-banner";
 
+const authorityImages: Record<string, { src: string; alt: string; position: string }> = {
+  "controllo-di-gestione": { src: "/images/home/controllo-gestione-analisi-dati.webp", alt: "Analisi di indicatori economici con dashboard e calcolatrice", position: "56% center" },
+  "business-plan": { src: "/images/home/business-plan-documenti-finanziari.webp", alt: "Professionista esamina documenti e proiezioni di un business plan", position: "center center" },
+  "project-management": { src: "/images/home/project-management-sala-riunioni.webp", alt: "Sala riunioni organizzata per il coordinamento di un progetto", position: "center center" },
+};
+
 export function AuthorityPageView({ page }: { page: AuthorityPage }) {
   const service = services.find((item) => item.slug === page.relatedService)!;
+  const heroImage = authorityImages[page.slug];
   const breadcrumb = [
     { label: "Home", href: "/" }, { label: "Competenze", href: "/servizi" }, { label: page.title },
   ];
   return <>
     <Breadcrumbs items={breadcrumb} />
-    <section className="bg-slate-50 py-16 sm:py-24"><div className="container max-w-5xl"><p className="eyebrow">{page.eyebrow}</p><h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-[-.055em] text-navy sm:text-6xl">{page.title}</h1><p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{page.description}</p><Link className="button-primary mt-8" href="/contatti">Confrontiamoci sul tuo progetto <ArrowUpRight className="size-4" /></Link></div></section>
+    <section className="bg-slate-50 py-16 sm:py-24"><div className={heroImage ? "container grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr]" : "container max-w-5xl"}><div><p className="eyebrow">{page.eyebrow}</p><h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-[-.055em] text-navy sm:text-6xl">{page.title}</h1><p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{page.description}</p><Link className="button-primary mt-8" href="/contatti">Confrontiamoci sul tuo progetto <ArrowUpRight className="size-4" /></Link></div>{heroImage && <div className="relative aspect-[16/9] min-h-64 overflow-hidden bg-navy"><Image src={heroImage.src} alt={heroImage.alt} width={1672} height={941} sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, 100vw" loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: heroImage.position }} /></div>}</div></section>
     <section className="container grid gap-12 py-20 sm:py-28 lg:grid-cols-[.8fr_1.2fr]"><div><p className="eyebrow">Il problema da rendere leggibile</p><h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] text-navy">Dai dati e dai processi a decisioni più chiare.</h2></div><div><p className="text-lg leading-8 text-slate-700">{page.problem}</p>{page.disclaimer && <p className="mt-7 border-l-2 border-gold bg-slate-50 p-5 text-sm leading-6 text-slate-700">{page.disclaimer}</p>}</div></section>
     <section className="bg-navy py-20 text-white sm:py-28"><div className="container"><div className="max-w-3xl"><p className="eyebrow">Ambiti di intervento</p><h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] sm:text-4xl">Un perimetro concreto, costruito sulle priorità.</h2></div><div className="mt-12 grid gap-3 md:grid-cols-2">{page.activities.map((item) => <div className="flex gap-3 border border-white/15 p-6" key={item}><Check className="mt-0.5 size-5 shrink-0 text-gold" /><span>{item}</span></div>)}</div></div></section>
     <section className="container py-20 sm:py-28"><div className="grid gap-12 lg:grid-cols-2"><div><p className="eyebrow">Metodo di lavoro</p><h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] text-navy">Analisi, priorità, attuazione e verifica.</h2><ol className="mt-8 space-y-5">{["Condividiamo obiettivi e decisioni da sostenere.", "Verifichiamo dati, processi e vincoli disponibili.", "Definiamo poche azioni, responsabilità e indicatori.", "Controlliamo gli effetti e aggiorniamo il percorso."].map((step, index) => <li className="flex gap-4" key={step}><span className="flex size-8 shrink-0 items-center justify-center bg-gold text-xs font-bold text-navy">0{index + 1}</span><span className="pt-1 text-slate-700">{step}</span></li>)}</ol></div><div className="bg-slate-50 p-7 sm:p-10"><p className="eyebrow">Vantaggi attesi</p><ul className="mt-7 space-y-5">{page.benefits.map((item) => <li className="flex gap-3 text-navy" key={item}><CircleCheckBig className="size-5 shrink-0 text-gold" />{item}</li>)}</ul><Link className="button-secondary mt-9" href="/contatti">Valuta il perimetro con noi</Link></div></div></section>

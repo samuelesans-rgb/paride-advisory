@@ -8,7 +8,7 @@ import { WhatsAppButton } from "@/components/whatsapp-button";
 import { siteConfig } from "@/lib/site-data";
 
 const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], display: "swap" });
-const socialImage = "/images/hero-advisory.jpg";
+const socialImage = "/images/brand/logo.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     locale: "it_IT",
     siteName: siteConfig.name,
     url: siteConfig.url,
-    images: [{ url: socialImage, width: 2400, height: 1800, alt: "Paride Sansò Advisory" }],
+    images: [{ url: socialImage, width: 1254, height: 1254, alt: "Logo Paride Sansò Advisory" }],
   },
   twitter: {
     card: "summary_large_image",
