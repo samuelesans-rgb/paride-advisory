@@ -31,6 +31,8 @@ export const siteConfig = {
 export type Service = {
   slug: string;
   title: string;
+  seoTitle?: string;
+  h1?: string;
   eyebrow: string;
   summary: string;
   description: string;
@@ -84,6 +86,8 @@ export const services: Service[] = [
   {
     slug: "project-management",
     title: "Project management",
+    seoTitle: "Servizi di project management",
+    h1: "Servizi di project management",
     eyebrow: "Metodo e controllo",
     summary: "Progetti governati con precisione, dall’avvio alla consegna.",
     description:
