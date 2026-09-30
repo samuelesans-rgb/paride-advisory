@@ -14,6 +14,7 @@ export type AuthorityPage = {
   relatedSector: string;
   relatedSectorTitle?: string;
   relatedArticle: string;
+  relatedArticleTitle?: string;
   faqs: FaqItem[];
   disclaimer?: string;
 };
@@ -90,7 +91,7 @@ export const authorityPages: AuthorityPage[] = [
     problem: "Attività ripetitive, passaggi ridondanti e responsabilità poco chiare rallentano il lavoro e rendono difficile controllarne l’esecuzione. L’analisi ricostruisce flussi operativi, tempi e scambi tra persone o funzioni; su questa base è possibile rivedere procedure e punti di controllo, senza confondere il processo con l’assetto organizzativo o con la gestione di un singolo progetto.",
     activities: ["Mappatura dei flussi operativi, delle attività e dei tempi", "Individuazione di attese, rilavorazioni e colli di bottiglia", "Chiarimento di passaggi, responsabilità e coordinamento tra funzioni", "Definizione di procedure, indicatori e verifiche sull’esecuzione"],
     benefits: ["Tempi e passaggi più prevedibili", "Meno errori, duplicazioni e attività prive di valore", "Risultati misurabili e maggiore controllo dell’esecuzione"],
-    relatedService: "strategica", relatedSector: "pmi", relatedSectorTitle: "Consulenza per PMI", relatedArticle: "analisi-dei-costi-sprechi-margini",
+    relatedService: "strategica", relatedSector: "pmi", relatedSectorTitle: "Consulenza per PMI", relatedArticle: "ottimizzazione-processi-aziendali", relatedArticleTitle: "Come analizzare e ottimizzare i processi aziendali",
     faqs: [{ question: "Da quale processo conviene partire?", answer: "Da quello con maggiore impatto su cliente, cassa o carico operativo e con problemi osservabili." }, { question: "La tecnologia è sempre necessaria?", answer: "No. Prima si chiarisce il flusso; solo dopo si valuta se uno strumento digitale genera un vantaggio reale." }],
   },
   {

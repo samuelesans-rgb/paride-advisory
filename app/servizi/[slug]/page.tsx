@@ -11,7 +11,7 @@ import { createMetadata } from "@/lib/seo";
 import { services, siteConfig } from "@/lib/site-data";
 
 const relations: Record<string, { services: string[]; competences: string[]; sector: string; article: string }> = {
-  amministrativa: { services: ["finanziaria", "strategica"], competences: ["controllo-di-gestione", "analisi-dei-costi", "procedure-amministrative"], sector: "pmi", article: "controllo-di-gestione-pmi-redditivita" },
+  amministrativa: { services: ["finanziaria", "strategica"], competences: ["controllo-di-gestione", "analisi-dei-costi", "procedure-amministrative", "ottimizzazione-dei-processi"], sector: "pmi", article: "controllo-di-gestione-pmi-redditivita" },
   finanziaria: { services: ["amministrativa", "strategica"], competences: ["pianificazione-finanziaria", "cash-flow", "business-plan", "budget-aziendale"], sector: "pmi", article: "cash-flow-aziendale-monitorare-liquidita" },
   strategica: { services: ["amministrativa", "project-management"], competences: ["organizzazione-aziendale", "ottimizzazione-dei-processi", "riorganizzazione-aziendale", "nuove-attivita-e-startup", "digitalizzazione-dei-processi"], sector: "attivita-commerciali", article: "business-plan-cosa-contiene-quando-serve" },
   tecnici: { services: ["project-management", "strategica"], competences: ["facility-management", "project-management"], sector: "condomini", article: "project-management-riqualificazione" },
