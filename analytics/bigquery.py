@@ -176,6 +176,8 @@ class BigQuery:
                             value = float(value)
                     item[f["name"]] = value
                 rows.append(item)
+            if len(rows) > 200000:
+                raise DataError("BIGQUERY_RESULT_LIMIT: over 200000 aggregate rows")
             token = result.get("pageToken")
             if not token:
                 break
@@ -187,6 +189,4 @@ class BigQuery:
                 + "&maxResults=10000&pageToken="
                 + token
             )
-            if len(rows) > 200000:
-                raise DataError("BIGQUERY_RESULT_LIMIT: over 200000 aggregate rows")
         return rows

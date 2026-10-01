@@ -42,7 +42,48 @@ class FakeClient:
         }
 
 
+class PaginatedClient(BigQuery):
+    """Exercise result paging without credentials or network requests."""
+
+    def __init__(self, page_sizes):
+        self.remaining = 10_000_000_000
+        self.audit = []
+        self.page_sizes = page_sizes
+        self.pages_read = 0
+
+    def request(self, path, body=None):
+        if path == "jobs":
+            return {"statistics": {"query": {"totalBytesProcessed": "1"}}}
+        size = self.page_sizes[self.pages_read]
+        self.pages_read += 1
+        result = {
+            "jobComplete": True,
+            "schema": {"fields": [{"name": "n", "type": "INTEGER"}]},
+            "rows": [{"f": [{"v": "1"}]}] * size,
+        }
+        if self.pages_read < len(self.page_sizes):
+            result["pageToken"] = str(self.pages_read)
+        return result
+
+
 class AnalyticsTests(unittest.TestCase):
+    def test_result_limit_allows_exactly_200000_rows(self):
+        client = PaginatedClient([10000] * 20)
+        self.assertEqual(len(client.query("SELECT 1", "EU")), 200000)
+        self.assertEqual(client.pages_read, 20)
+
+    def test_result_limit_rejects_200001_before_next_page(self):
+        client = PaginatedClient([10000] * 20 + [1, 1])
+        with self.assertRaisesRegex(DataError, "BIGQUERY_RESULT_LIMIT"):
+            client.query("SELECT 1", "EU")
+        self.assertEqual(client.pages_read, 21)
+
+    def test_result_limit_rejects_overflow_on_last_page(self):
+        client = PaginatedClient([10000] * 20 + [1])
+        with self.assertRaisesRegex(DataError, "BIGQUERY_RESULT_LIMIT"):
+            client.query("SELECT 1", "EU")
+        self.assertEqual(client.pages_read, 21)
+
     def test_urls(self):
         for v in [
             "http://www.sansoadvisory.it/blog/?utm_source=x#f",
