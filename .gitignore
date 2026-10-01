@@ -40,3 +40,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# private analytics runtime
+analytics/__pycache__/
+analytics/tests/__pycache__/
+.analytics-venv/

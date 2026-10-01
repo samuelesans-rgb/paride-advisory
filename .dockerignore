@@ -3,3 +3,9 @@ node_modules
 .git
 .env
 npm-debug.log
+
+# Analytics runs as a private host service, outside the website image.
+analytics
+.analytics-venv
+.mypy_cache
+.ruff_cache

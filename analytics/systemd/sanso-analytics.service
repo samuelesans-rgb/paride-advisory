@@ -1,0 +1,24 @@
+[Unit]
+Description=Sansò Advisory private analytics report
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/srv/docker/paride-advisory
+Environment=PATH=/home/ubuntu/.local/share/sanso/google-cloud-sdk/bin:/usr/local/bin:/usr/bin:/bin
+Environment=HOME=/home/ubuntu
+ExecStart=/srv/docker/paride-advisory/.analytics-venv/bin/python -m analytics.report --output /var/lib/sanso-analytics
+StateDirectory=sanso-analytics
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/var/lib/sanso-analytics
+Environment=PYTHONDONTWRITEBYTECODE=1
+TimeoutStartSec=1200
+MemoryMax=512M
+CPUQuota=25%

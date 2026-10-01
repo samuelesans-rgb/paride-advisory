@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily Sansò Advisory analytics and export detection
+
+[Timer]
+OnCalendar=*-*-* 09:10:00 UTC
+RandomizedDelaySec=600
+Persistent=true
+Unit=sanso-analytics.service
+
+[Install]
+WantedBy=timers.target
