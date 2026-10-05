@@ -21,7 +21,11 @@ export function GoogleAnalyticsPageView({ measurementId }: { measurementId: stri
     const pagePath = query ? `${pathname}?${query}` : pathname;
 
     if (isInitialPageView.current) {
-      window.gtag("config", measurementId, { page_path: pagePath });
+      window.gtag("config", measurementId, {
+        page_path: pagePath,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
       isInitialPageView.current = false;
       return;
     }

@@ -1,9 +1,29 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
-  const reduceMotion = useReducedMotion();
-  return <motion.div className={className} initial={reduceMotion ? false : { opacity: 0, y: 20 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: reduceMotion ? 0 : 0.55, delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>;
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    element.dataset.revealPending = "";
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      delete element.dataset.revealPending;
+      element.animate(
+        [{ opacity: 0, transform: "translateY(20px)" }, { opacity: 1, transform: "translateY(0)" }],
+        { duration: 550, delay: delay * 1000, easing: "cubic-bezier(.22,1,.36,1)", fill: "backwards" },
+      );
+    }, { rootMargin: "-60px" });
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+      delete element.dataset.revealPending;
+    };
+  }, [delay]);
+
+  return <div ref={ref} className={`reveal ${className ?? ""}`}>{children}</div>;
 }

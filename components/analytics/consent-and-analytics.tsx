@@ -46,7 +46,7 @@ export function GoogleAnalytics() {
   if (!measurementId) return null;
   return (
     <>
-      <Script id="google-analytics-library" src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`} strategy="afterInteractive" />
+      <Script id="google-analytics-library" src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`} strategy="lazyOnload" />
       <Suspense fallback={null}>
         <GoogleAnalyticsPageView measurementId={measurementId} />
       </Suspense>
