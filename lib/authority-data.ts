@@ -17,6 +17,7 @@ export type AuthorityPage = {
   relatedArticleTitle?: string;
   faqs: FaqItem[];
   disclaimer?: string;
+  contextParagraphs?: { before: string; label: string; href: string; after: string }[];
 };
 
 export const authorityPages: AuthorityPage[] = [
@@ -24,6 +25,12 @@ export const authorityPages: AuthorityPage[] = [
     slug: "controllo-di-gestione", title: "Controllo di gestione", eyebrow: "Numeri che guidano le decisioni",
     description: "Un sistema di controllo di gestione per PMI che rende leggibili costi, margini, scostamenti e priorità operative.",
     problem: "Fatturato e saldo bancario non bastano a spiegare dove si crea valore. Il controllo di gestione collega dati economici e attività quotidiane, così l’imprenditore può intervenire prima che uno scostamento diventi un problema.",
+    contextParagraphs: [
+      { before: "Per leggere i margini per prodotto o attività, l’", label: "analisi dei costi", href: "/competenze/analisi-dei-costi", after: " chiarisce quali risorse incidono sul risultato." },
+      { before: "Il confronto tra obiettivi e consuntivi parte da un ", label: "budget aziendale condiviso", href: "/competenze/budget-aziendale", after: ", con ipotesi e responsabilità verificabili." },
+      { before: "Nel settore della ", label: "ristorazione e hospitality", href: "/settori/ristorazione-hospitality", after: ", questi strumenti collegano acquisti, personale e volumi di servizio." },
+      { before: "L’approfondimento su ", label: "costi e margini di un ristorante", href: "/blog/consulenza-aziendale-ristoranti-costi-margini", after: " mostra come leggere insieme food cost e organizzazione operativa." },
+    ],
     activities: ["Definizione di KPI coerenti con il modello di business", "Impostazione di report periodici e centri di analisi", "Confronto tra budget, consuntivo e previsioni", "Lettura di margini, costi fissi e variabili"],
     benefits: ["Decisioni fondate su dati comparabili", "Responsabilità e priorità più chiare", "Individuazione tempestiva degli scostamenti"],
     relatedService: "amministrativa", relatedSector: "pmi", relatedArticle: "controllo-di-gestione-pmi-redditivita",
@@ -43,6 +50,12 @@ export const authorityPages: AuthorityPage[] = [
     slug: "budget-aziendale", title: "Budget aziendale", eyebrow: "Obiettivi tradotti in numeri",
     description: "Un budget operativo per trasformare priorità commerciali, costi e investimenti in un percorso misurabile.",
     problem: "Senza un riferimento condiviso, ogni scostamento viene letto troppo tardi. Il budget crea una base concreta per coordinare obiettivi, risorse e responsabilità durante l’anno.",
+    contextParagraphs: [
+      { before: "Le ipotesi di spesa si costruiscono con l’", label: "analisi dei costi", href: "/competenze/analisi-dei-costi", after: ", distinguendo costi fissi, variabili e driver operativi." },
+      { before: "Durante l’anno, il ", label: "controllo di gestione", href: "/competenze/controllo-di-gestione", after: " confronta budget e risultati per individuare gli scostamenti da approfondire." },
+      { before: "Per ", label: "ristoranti, bar e hotel", href: "/settori/ristorazione-hospitality", after: ", il budget operativo collega acquisti, personale e volumi attesi." },
+      { before: "L’articolo sulla ", label: "gestione di costi e margini nella ristorazione", href: "/blog/consulenza-aziendale-ristoranti-costi-margini", after: " approfondisce le variabili operative da considerare." },
+    ],
     activities: ["Budget ricavi e volumi", "Budget costi e investimenti", "Piano di cassa collegato", "Aggiornamento rolling e analisi scostamenti"],
     benefits: ["Obiettivi verificabili", "Maggiore coordinamento tra funzioni", "Reazioni più rapide ai cambiamenti"],
     relatedService: "finanziaria", relatedSector: "pmi", relatedArticle: "business-plan-cosa-contiene-quando-serve",
@@ -52,6 +65,11 @@ export const authorityPages: AuthorityPage[] = [
     slug: "analisi-dei-costi", title: "Analisi dei costi", eyebrow: "Proteggere i margini",
     description: "Analisi dei costi per distinguere sprechi, inefficienze e risorse necessarie, senza tagli indiscriminati.",
     problem: "Ridurre i costi senza comprenderne la funzione può indebolire il servizio. L’analisi separa costi fissi e variabili, diretti e indiretti, e li collega a prodotti, attività o commesse.",
+    contextParagraphs: [
+      { before: "Il ", label: "controllo di gestione", href: "/competenze/controllo-di-gestione", after: " usa questa lettura dei costi per monitorare margini e scostamenti nel tempo." },
+      { before: "I driver individuati alimentano il ", label: "budget di costi e ricavi", href: "/competenze/budget-aziendale", after: ", rendendo esplicite le ipotesi di pianificazione." },
+      { before: "Per un’applicazione al food cost, leggi l’approfondimento su ", label: "costi e margini dei ristoranti", href: "/blog/consulenza-aziendale-ristoranti-costi-margini", after: ", che collega materie prime, scarti e mix delle vendite." },
+    ],
     activities: ["Mappatura e classificazione dei costi", "Analisi per prodotto, servizio o commessa", "Margine di contribuzione e break-even", "Priorità di efficientamento"],
     benefits: ["Margini più trasparenti", "Interventi selettivi e motivati", "Politiche di prezzo più consapevoli"],
     relatedService: "amministrativa", relatedSector: "ristorazione-hospitality", relatedArticle: "analisi-dei-costi-sprechi-margini",
