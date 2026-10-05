@@ -3,3 +3,9 @@ node_modules
 .git
 .env
 npm-debug.log
+
+# Private analytics are not part of the web image
+analytics
+.analytics-venv
+.mypy_cache
+.ruff_cache

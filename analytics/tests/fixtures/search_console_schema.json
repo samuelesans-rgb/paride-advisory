@@ -1,0 +1,275 @@
+{
+  "location": "EU",
+  "tables": [
+    {
+      "tableReference": {
+        "projectId": "sanso-advisory-analytics",
+        "datasetId": "searchconsole",
+        "tableId": "ExportLog"
+      },
+      "schema": {
+        "fields": [
+          {
+            "name": "agenda",
+            "type": "STRING"
+          },
+          {
+            "name": "namespace",
+            "type": "STRING"
+          },
+          {
+            "name": "data_date",
+            "type": "DATE"
+          },
+          {
+            "name": "epoch_version",
+            "type": "INTEGER"
+          },
+          {
+            "name": "publish_time",
+            "type": "TIMESTAMP"
+          }
+        ]
+      },
+      "timePartitioning": null
+    },
+    {
+      "tableReference": {
+        "projectId": "sanso-advisory-analytics",
+        "datasetId": "searchconsole",
+        "tableId": "searchdata_site_impression"
+      },
+      "schema": {
+        "fields": [
+          {
+            "name": "data_date",
+            "type": "DATE"
+          },
+          {
+            "name": "site_url",
+            "type": "STRING"
+          },
+          {
+            "name": "query",
+            "type": "STRING"
+          },
+          {
+            "name": "is_anonymized_query",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "country",
+            "type": "STRING"
+          },
+          {
+            "name": "search_type",
+            "type": "STRING"
+          },
+          {
+            "name": "device",
+            "type": "STRING"
+          },
+          {
+            "name": "impressions",
+            "type": "INTEGER"
+          },
+          {
+            "name": "clicks",
+            "type": "INTEGER"
+          },
+          {
+            "name": "sum_top_position",
+            "type": "INTEGER"
+          }
+        ]
+      },
+      "timePartitioning": {
+        "type": "DAY",
+        "field": "data_date"
+      }
+    },
+    {
+      "tableReference": {
+        "projectId": "sanso-advisory-analytics",
+        "datasetId": "searchconsole",
+        "tableId": "searchdata_url_impression"
+      },
+      "schema": {
+        "fields": [
+          {
+            "name": "data_date",
+            "type": "DATE"
+          },
+          {
+            "name": "site_url",
+            "type": "STRING"
+          },
+          {
+            "name": "url",
+            "type": "STRING"
+          },
+          {
+            "name": "query",
+            "type": "STRING"
+          },
+          {
+            "name": "is_anonymized_query",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_anonymized_discover",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "country",
+            "type": "STRING"
+          },
+          {
+            "name": "search_type",
+            "type": "STRING"
+          },
+          {
+            "name": "device",
+            "type": "STRING"
+          },
+          {
+            "name": "is_amp_top_stories",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_amp_blue_link",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_job_listing",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_job_details",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_tpf_qa",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_tpf_faq",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_tpf_howto",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_weblite",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_action",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_events_listing",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_events_details",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_forums",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_search_appearance_android_app",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_amp_story",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_amp_image_result",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_video",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_organic_shopping",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_review_snippet",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_special_announcement",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_recipe_feature",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_recipe_rich_snippet",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_subscribed_content",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_page_experience",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_practice_problems",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_math_solvers",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_translated_result",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_edu_q_and_a",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_product_snippets",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_merchant_listings",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "is_learning_videos",
+            "type": "BOOLEAN"
+          },
+          {
+            "name": "impressions",
+            "type": "INTEGER"
+          },
+          {
+            "name": "clicks",
+            "type": "INTEGER"
+          },
+          {
+            "name": "sum_position",
+            "type": "INTEGER"
+          }
+        ]
+      },
+      "timePartitioning": {
+        "type": "DAY",
+        "field": "data_date"
+      }
+    }
+  ]
+}
