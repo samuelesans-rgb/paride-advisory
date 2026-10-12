@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 export function AnimatedCounter({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const target = Number.parseInt(value, 10);
-  const [display, setDisplay] = useState(0);
+  // Keep the authored value available in SSR and on the first hydration render.
+  const [display, setDisplay] = useState(target);
 
   useEffect(() => {
     const element = ref.current;
@@ -40,5 +41,5 @@ export function AnimatedCounter({ value }: { value: string }) {
     };
   }, [target]);
 
-  return <span ref={ref}>{display}{value.includes("+") ? "+" : ""}</span>;
+  return <span ref={ref}><span className="sr-only">{value}</span><span aria-hidden="true">{display}{value.includes("+") ? "+" : ""}</span></span>;
 }
