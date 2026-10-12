@@ -1,6 +1,6 @@
 # SEO sprint Sansò Advisory — 12–18 ottobre 2026
 
-STATUS: VALIDATED / DEPLOY_PENDING
+STATUS: DEPLOYED / PASS
 
 ## Baseline e perimetro
 
@@ -70,18 +70,18 @@ GA4 non usato per inferire performance SEO. Conservati avvisi su consent modelli
 
 ## Lighthouse e Core Web Vitals
 
-LAB: Lighthouse 13.0.0, Chromium headless 153, VPS Linux, Chrome --headless --no-sandbox --disable-dev-shm-usage, profili standard mobile simulato (CPU 4x, RTT 150ms) e desktop. Tre run sequenziali per pagina/profilo, mediana. Browser/profilo pulito e consenso non selezionato in ogni run. JSON grezzi e script riproducibile salvati negli artifact privati. Eventuali run iniziali durante build sono ripetuti a build terminata prima di utilizzare la mediana.
+LAB: Lighthouse 13.0.0, Chromium headless 153, VPS Linux, Chrome --headless --no-sandbox --disable-dev-shm-usage, profili standard mobile simulato (CPU 4x, RTT 150ms) e desktop. Tre run sequenziali per pagina/profilo, mediana. Browser/profilo pulito e consenso non selezionato in ogni run. JSON grezzi e script riproducibile salvati negli artifact privati. Run iniziali durante build ripetuti a build terminata. Anche i run post-deploy mobile coincidenti con smoke browser sono ripetuti senza smoke in corso; originali conservati separatamente.
 
 FIELD: NOT AVAILABLE; nessun CrUX/INP verificato. TBT è un proxy LAB e non è INP.
 
 | Profilo / URL | Run | Performance prima | LCP s | CLS | TBT ms | Performance dopo | LCP s dopo | CLS dopo | TBT ms dopo |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| mobile / | 3 | 82 | 2.04 | 0.00003 | 673 | non rimisurata | — | — | — |
+| mobile / | 3 | 82 | 2.04 | 0.00003 | 673 | 81 | 2.03 | 0.00003 | 757 |
 | mobile /servizi/amministrativa | 3 | 82 | 1.96 | 0.00000 | 690 | non rimisurata | — | — | — |
 | mobile /competenze/controllo-di-gestione | 3 | 82 | 1.88 | 0.00000 | 701 | non rimisurata | — | — | — |
 | mobile /settori | 3 | 83 | 1.96 | 0.00000 | 661 | non rimisurata | — | — | — |
 | mobile /blog/consulenza-aziendale-ristoranti-costi-margini | 3 | 81 | 2.64 | 0.00000 | 674 | non rimisurata | — | — | — |
-| desktop / | 3 | 100 | 0.69 | 0.00008 | 42 | non rimisurata | — | — | — |
+| desktop / | 3 | 100 | 0.69 | 0.00008 | 42 | 100 | 0.66 | 0.00010 | 30 |
 | desktop /servizi/amministrativa | 3 | 100 | 0.63 | 0.00000 | 32 | non rimisurata | — | — | — |
 | desktop /competenze/controllo-di-gestione | 3 | 100 | 0.60 | 0.00000 | 23 | non rimisurata | — | — | — |
 | desktop /settori | 3 | 100 | 0.59 | 0.00000 | 28 | non rimisurata | — | — | — |
@@ -103,13 +103,15 @@ Consent Mode v2/Iubenda/GA4 invariati. Test browser nessuna scelta/rifiuto/accet
 
 Diff applicativo: solo animated-counter.tsx; questo report è documentazione dello sprint. Workflow produzione verificato tramite label del container e audit precedente: docker compose progetto paride-advisory, servizio paride-advisory. Build da archivio Git pulito con override build.context, senza incorporare public/orizzonte/ o analytics privati. Solo container app da ricreare; nessun down/prune/riavvio altri servizi.
 
-Commit/push/deploy: pianificati dopo controlli verdi; aggiornamento finale del report successivo alla verifica produzione.
+Commit/push/deploy: eseguiti; commit implementazione d36dc9a68a4b76904c7feac47203be3327a606e0, push origin/main riuscito. Verifica produzione completata; questo report viene aggiornato con un commit documentale separato senza un secondo deploy web.
 
 Rollback: immagine produzione iniziale preservata con tag paride-advisory:rollback-seo-20261012; override e script nello stesso audit. Non ripristinare il rollback infrastrutturale del 5 ottobre: lo sprint corrente riguarda esclusivamente app. Backup e credenziali non spostati.
 
 ## Health check e regressioni
 
-Baseline routing PASS; candidato locale PASS. Verifiche finali pubblico/container/analytics da completare dopo deploy.
+Produzione verificata su 42 URL: HTTPS, canonical, JSON-LD, sitemap, robots, metadata e link confrontati con baseline. check-public-routing.sh PASS; www 308, ERP 307, articolo SEO 200. Codex e tutti i container diversi dalla sola app invariati; analytics timer attivo e ultimo servizio Result=success/ExecMainStatus=0. Hash dei file protetti invariati. Nessuna regressione rilevata.
+
+Durante la ricreazione app il primo health check ha rilevato HTTP 502 su dominio/www/articolo; il controllo successivo a servizio pronto è PASS. Durata esatta non misurata. Interruzione transitoria del workflow Compose, nessun errore persistente. Solo container paride-advisory ricreato; dettagli ID/StartedAt prima e dopo negli artifact. Codex daemon PID 3531167, versione 0.162.1, rimasto attivo e identità invariata.
 
 ## Prossime azioni
 
@@ -135,3 +137,11 @@ CPU/payload homepage prima (mediane LAB):
 | iubenda | 746 | 132150 |
 | ga | 315 | 180695 |
 | other | 392 | 0 |
+
+## Esito quantitativo post-deploy
+
+Homepage mobile: performance 82 → 81, LCP 2,035 → 2,034 s, CLS 0,000034 → 0,000026, TBT 672,5 → 756,5 ms (+84 ms). Intervalli TBT dei tre run: prima 635–732,5 ms, dopo 731,5–777,5 ms. CPU first-party mediana 1322 → 1319 ms; Iubenda 746 → 826 ms. JS transfer totale 478719 → 478738 byte. La mediana TBT è peggiore: non si dichiara miglioramento, e non è dimostrata una regressione causata dal contatore. Variazioni di terze parti/ambiente restano un limite; la modifica è mantenuta per il beneficio tecnico SSR/accessibilità verificato. Il TBT mobile elevato rimane una criticità da indagare con misure isolate, non una giustificazione per cambiare il consenso.
+
+Homepage desktop: performance 100 → 100, LCP 0,690 → 0,659 s, CLS 0,000078 → 0,000098, TBT 42 → 30 ms. Le piccole differenze non sono presentate come miglioramenti causali.
+
+Le misure del 5 ottobre restano un confronto orientativo per differenza di versione Chromium/Lighthouse. Date Search Console nel calendario Pacific dell'export, separate dalle date/report GA4: nessun join di conversione o inferenza combinata.
