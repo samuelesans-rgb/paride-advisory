@@ -15,7 +15,12 @@
 }
 
 @utility container { margin-inline: auto; width: 100%; max-width: 1280px; padding-inline: 1.25rem; }
-@utility eyebrow { @apply text-xs font-bold uppercase tracking-[0.18em] text-gold; }
+@utility eyebrow { @apply text-xs font-bold uppercase tracking-[0.18em]; color: #85650e; }
+
+.text-xs.font-bold.text-gold { color: #85650e; }
+
+.bg-navy .eyebrow,
+.bg-navy .text-xs.font-bold.text-gold { color: var(--color-gold); }
 @utility button-primary { @apply inline-flex items-center justify-center gap-2 bg-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:cursor-not-allowed disabled:opacity-60; }
 @utility button-secondary { @apply inline-flex items-center justify-center gap-2 border border-navy/25 bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold; }
 @utility button-gold { @apply inline-flex items-center justify-center gap-2 bg-gold px-5 py-3 text-sm font-semibold text-navy transition hover:bg-[#d7b23d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white; }
