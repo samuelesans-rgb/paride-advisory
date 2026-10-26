@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import { ConsentDefaults, GoogleAnalytics, IubendaConsentManager } from "@/components/analytics/consent-and-analytics";
+import { ContactClickTracking } from "@/components/analytics/contact-click-tracking";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { WhatsAppButton } from "@/components/whatsapp-button";
@@ -47,5 +48,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     areaServed: ["Milano", "IT"],
     sameAs: [siteConfig.linkedin],
   };
-  return <html lang="it" className={manrope.variable}><head><ConsentDefaults /><IubendaConsentManager /></head><body><Navbar /><main id="main-content" tabIndex={-1}>{children}</main><Footer /><WhatsAppButton /><GoogleAnalytics /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
+  return <html lang="it" className={manrope.variable}><head><ConsentDefaults /><IubendaConsentManager /></head><body><Navbar /><main id="main-content" tabIndex={-1}>{children}</main><Footer /><WhatsAppButton /><GoogleAnalytics /><ContactClickTracking /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
 }
